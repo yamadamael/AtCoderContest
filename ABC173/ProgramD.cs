@@ -8,20 +8,43 @@ namespace ABC
     {
         static void Main(string[] args)
         {
-            var s = Console.ReadLine();
+            var n = long.Parse(Console.ReadLine());
+            var list = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToList();
+            var result = 0L;
 
-            var a = long.Parse(Console.ReadLine());
+            list.Sort((a, b) => b - a);
 
-            var inputs = Console.ReadLine().Split(" ");
-            var n = long.Parse(inputs[0]);
-            var m = long.Parse(inputs[1]);
-            var k = long.Parse(inputs[2]);
+            // long right, left;
+            // right = list[0];
+            // left = list[0];
 
-            var list = Console.ReadLine().Split(" ").Select(x => long.Parse(x)).ToList();
+            // for (var i = 1; i < n; i++)
+            // {
+            //     if (right > left)
+            //     {
+            //         result += left;
+            //         right = list[i];
+            //     }
+            //     else
+            //     {
+            //         result += right;
+            //         left = list[i];
+            //     }
+            // }
+            var t = n - 1;
 
-            var result = 0;
-
-
+            for (var i = 0; i < n; i++)
+            {
+                var count = i == 0 ? 1 : 2;
+                for (var j = 0; j < count; j++)
+                {
+                    if (t > 0)
+                    {
+                        result += list[i];
+                        t--;
+                    }
+                }
+            }
 
             Console.WriteLine(result);
         }
