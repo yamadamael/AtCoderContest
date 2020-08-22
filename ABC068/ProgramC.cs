@@ -6,24 +6,51 @@ namespace ABC
 {
     class ProgramC
     {
+        static List<int>[] _list;
+        static int _n;
+        static int _m;
+
         static void Main(string[] args)
         {
-            var s = Console.ReadLine();
-
-            var a = long.Parse(Console.ReadLine());
-
             var inputs = Console.ReadLine().Split(" ");
-            var n = long.Parse(inputs[0]);
-            var m = long.Parse(inputs[1]);
-            var k = long.Parse(inputs[2]);
+            _n = int.Parse(inputs[0]);
+            _m = int.Parse(inputs[1]);
 
-            var list = Console.ReadLine().Split(" ").Select(x => long.Parse(x)).ToList();
+            _list = new List<int>[_n];
+            for (var i = 0; i < _n; i++)
+            {
+                _list[i] = new List<int>();
+            }
 
-            var result = 0;
+            for (var i = 0; i < _m; i++)
+            {
+                var inputs1 = Console.ReadLine().Split(" ");
+                var a = int.Parse(inputs1[0]) - 1;
+                var b = int.Parse(inputs1[1]) - 1;
+                _list[a].Add(b);
+            }
 
-
-
+            var result = dfs(0, 0) ? "POSSIBLE" : "IMPOSSIBLE";
             Console.WriteLine(result);
+        }
+
+        static bool dfs(int v, int count)
+        {
+            // Console.WriteLine(string.Join(", ", v, count));
+
+            if (count == 2)
+            {
+                return v == _n - 1;
+            }
+
+            foreach (var l in _list[v])
+            {
+                var b = dfs(l, count + 1);
+                if (b)
+                    return true;
+            }
+
+            return false;
         }
     }
 }
