@@ -6,24 +6,24 @@ namespace ABC
 {
     class ProgramC
     {
+        static int _a;
         static void Main(string[] args)
         {
-            var s = Console.ReadLine();
+            _a = int.Parse(Console.ReadLine());
+            func("", 0);
+        }
 
-            var a = long.Parse(Console.ReadLine());
+        static void func(string s, int count)
+        {
+            if (count == _a)
+            {
+                Console.WriteLine(s);
+                return;
+            }
 
-            var inputs = Console.ReadLine().Split(" ");
-            var n = long.Parse(inputs[0]);
-            var m = long.Parse(inputs[1]);
-            var k = long.Parse(inputs[2]);
-
-            var list = Console.ReadLine().Split(" ").Select(x => long.Parse(x)).ToList();
-
-            var result = 0;
-
-
-
-            Console.WriteLine(result);
+            func(s + "a", count + 1);
+            func(s + "b", count + 1);
+            func(s + "c", count + 1);
         }
     }
 }
