@@ -8,22 +8,22 @@ namespace ABC
     {
         static void Main(string[] args)
         {
-            var s = Console.ReadLine();
+            var n = 4;
+            var list = new string[n];
+            for (var i = 0; i < n; i++)
+            {
+                list[i] = Console.ReadLine().Replace(" ", "");
+            }
 
-            var a = long.Parse(Console.ReadLine());
-
-            var inputs = Console.ReadLine().Split(" ");
-            var n = long.Parse(inputs[0]);
-            var m = long.Parse(inputs[1]);
-            var k = long.Parse(inputs[2]);
-
-            var list = Console.ReadLine().Split(" ").Select(x => long.Parse(x)).ToList();
-
-            var result = 0;
-
-
-
-            Console.WriteLine(result);
+            for (var i = n - 1; i >= 0; i--)
+            {
+                var s = "";
+                for (var j = n - 1; j >= 0; j--)
+                {
+                    s += list[i][j] + " ";
+                }
+                Console.WriteLine(s);
+            }
         }
     }
 }
